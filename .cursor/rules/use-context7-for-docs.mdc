@@ -1,0 +1,53 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Context7 Documentation Rule
+
+This rule outlines how to use the Context7 MCP (Model-Copilot-Protocol) to retrieve up-to-date documentation for any library, framework, or module.
+
+## Purpose
+
+To ensure the AI assistant has access to the latest documentation, preventing issues caused by outdated knowledge from its training data. This is particularly useful when working with rapidly evolving technologies.
+
+## Procedure
+
+When you need information about a specific library or module (e.g., its API, usage patterns, configuration), follow these steps:
+
+### 1. Resolve the Library ID
+
+First, you must obtain the Context7-compatible library ID.
+
+- **Action**: Call the `mcp_context7_resolve-library-id` tool.
+- **Parameter `libraryName`**: Use the common name of the library (e.g., "turborepo", "prisma", "better-auth", "remix").
+
+**Example Tool Call:**
+```
+mcp_context7_resolve-library-id(libraryName="better-auth")
+```
+
+The tool will return a list of matching libraries. Select the most relevant one based on the name, description, and trust score.
+
+### 2. Fetch the Documentation
+
+Once you have the exact library ID, you can fetch its documentation.
+
+- **Action**: Call the `mcp_context7_get-library-docs` tool.
+- **Parameter `context7CompatibleLibraryID`**: Use the ID obtained from the previous step (e.g., `/better-auth/better-auth`).
+- **Parameter `topic` (optional)**: Specify a topic to narrow down the search (e.g., "hooks", "API routes", "middleware").
+
+**Example Tool Call:**
+```
+mcp_context7_get-library-docs(
+  context7CompatibleLibraryID="/better-auth/better-auth",
+  topic="next.js handlers API routes"
+)
+```
+
+### 3. Utilize the Documentation
+
+The tool will return relevant documentation snippets. Use this information to:
+- Answer the user's questions accurately.
+- Implement code changes according to the latest best practices.
+- Provide examples from the documentation.

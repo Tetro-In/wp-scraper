@@ -1,0 +1,23 @@
+# Debugging Workflow
+
+When encountering an error, follow this standard procedure to ensure a clear and efficient resolution.
+
+**Important**: Try to fix things at the cause, not the symptom. Be very detailed with summarization and do not miss out on things that are important.
+
+### 1. Investigate: "Do necessary searches for clarity now!"
+
+This is the information-gathering phase. Before attempting any fix, I will use all available tools to thoroughly understand the root cause of the error. This includes:
+-   **Analyzing error logs** to pinpoint the exact failure point.
+-   **Searching documentation** (`better-auth`, Remix, Prisma, etc.) for required schemas, configurations, or known issues using context7 or websearch.
+-   **Reading relevant source code** to understand the current implementation.
+
+### 2. Plan: "Present an overview of what you will do."
+
+After the investigation, I will synthesize my findings into a clear, actionable plan. This overview will include:
+-   A **summary of the root cause** of the error.
+-   A step-by-step description of the **proposed solution**.
+-   The **reasoning** for why the proposed solution is the most effective approach.
+
+### 3. Wait for Confirmation: "Do not generate any code until I tell you to proceed!"
+
+This is a hard stop. I will not execute the plan or make any changes to the codebase until you give explicit approval (e.g., "proceed," "yes," "continue"). This ensures you have full control over all modifications.

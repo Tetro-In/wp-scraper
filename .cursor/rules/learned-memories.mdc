@@ -1,0 +1,23 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Project Memory
+
+This file stores project-specific knowledge, conventions, and user preferences learned by the AI assistant.
+
+## Technical Decisions
+
+- **React Version**: Use React 18.x across the entire monorepo. Both `packages/ui` and `apps/client-app` should use React 18.2.0+ and @types/react 18.x for compatibility. React 19 caused JSX component type errors due to breaking changes in ReactNode types.
+- **shadcn/ui**: Successfully integrated in turborepo structure with components in `packages/ui/src/components/*` and proper path aliasing configured.
+- **CSS Framework**: Tailwind CSS v3 is used with shadcn/ui design tokens and CSS variables.
+- **Tailwind Configuration**: Client app must include full shadcn/ui configuration (colors, animations, plugins) in its tailwind.config.ts to properly recognize CSS custom properties like `border-border`. Both packages should have synchronized Tailwind configs.
+- **Vite Configuration**: The client app's `vite.config.ts` requires a resolve alias `"@repo/ui": path.resolve(__dirname, "../../packages/ui/src")` to properly import CSS files from the UI package. Use `@repo/ui/styles/globals.css` import path, not relative paths.
+- **Chrome DevTools Integration**: Use `vite-plugin-devtools-json` plugin to handle Chrome DevTools requests to `/.well-known/appspecific/com.chrome.devtools.json`. This prevents 404 errors and enables seamless DevTools integration with automatic workspace folders.
+
+## Project Conventions
+
+- All UI components are centralized in `@repo/ui` package
+- Use `@repo/ui/components/*` import paths for shadcn/ui components
+- shadcn CLI should be run from `apps/client-app` directory to properly generate components in the shared UI package

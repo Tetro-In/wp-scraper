@@ -1,0 +1,30 @@
+# Feature Development Workflow
+
+When implementing a new feature, follow this standard procedure to ensure clarity, correctness, and alignment with project goals.
+
+**Important**: Be very detailed with summarization and do not miss out on things that are important.
+
+### 1. Understand: "What is the goal? Let's clarify now."
+
+This is the requirements-gathering and research phase. Before writing any code, I will use all available tools to thoroughly understand the feature's purpose and technical requirements. This includes:
+-   **Analyzing user requirements** to define the scope and acceptance criteria.
+-   **Searching the codebase** to identify existing components, services, or routes that can be leveraged or will be impacted.
+-   **Consulting documentation** (e.g., `shadcn/ui`, Remix, Prisma) using **Context7** or web search to determine the best implementation strategy and identify necessary components.
+-   **Asking clarifying questions** if the requirements are ambiguous or incomplete.
+
+### 2. Plan: "Here is how I will build it."
+
+After the research phase, I will synthesize my findings into a clear, actionable implementation plan. This overview will include:
+-   A **summary of the feature** and its intended functionality.
+-   A **step-by-step description** of the implementation, detailing which files will be created or modified.
+-   An outline of any **new components, API endpoints, or database schema changes**.
+-   The **reasoning** for the proposed technical approach.
+
+### 3. Implement & Verify: "Do not generate any code until I tell you to proceed!"
+
+**Important**: This is a hard stop. I will not execute the plan or make any changes to the codebase until you give explicit approval (e.g., "proceed," "yes," "continue"). This ensures you have full control over all modifications.
+
+Once you approve, I will:
+-   **Execute the plan** by writing code and making the specified changes.
+-   **Provide a summary** of the implementation.
+-   **Outline clear steps** for you to manually test and verify that the feature works as expected.

@@ -1,0 +1,30 @@
+---
+alwaysApply: true
+---
+
+# Documentation Sourcing Policy
+
+This document outlines the required sources for retrieving documentation for various libraries and frameworks.
+
+## 1. C-RAG for Curated Libraries
+
+For the libraries listed below, you **MUST** use the `c-rag` MCP tools to ensure you are working with the most up-to-date and project-specific information.
+
+### C-RAG Library List:
+- **Turborepo**
+- **Better Auth**
+
+### C-RAG Workflow:
+1.  Call `mcp_c-rag_get_available_sources()`
+2.  Use `mcp_c-rag_perform_rag_query()` for specific questions.
+3.  Use `mcp_c-rag_search_code_examples()` for code patterns.
+
+## 2. Context7 & Web Search for All Other Documentation
+
+For **any library not listed above**, you **MUST** use the following tools in order of preference:
+
+1.  **`context7` tools**: The primary choice for any library documentation.
+2.  **`web_search`**: For general queries or if `context7` is not applicable.
+
+## Rationale
+This policy ensures you use up-to-date documentation, preventing bugs from outdated knowledge. The C-RAG system is specially curated for core project libraries, while `context7` and `web_search` provide broader coverage for everything else.

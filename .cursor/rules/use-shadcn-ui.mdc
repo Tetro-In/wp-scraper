@@ -1,0 +1,74 @@
+---
+description: 
+globs: packages/ui/**/*,apps/client-app/app/routes/**/*.tsx,apps/client-app/app/entry.client.tsx,**/tailwind.config.ts,**/components.json,**/postcss.config.js,apps/client-app/app/root.tsx,apps/client-app/app/entry.server.tsx
+alwaysApply: false
+---
+# Use shadcn/ui for UI Development
+
+To ensure consistency, reusability, and a high-quality user interface, all new UI components, charts, and themes must be implemented using `shadcn/ui`.
+
+## 1. Discovering Components and Features
+
+Before implementation, use the available AI tools to discover components and research features.
+
+### Finding Components, Charts, and Blocks
+Use the **shadcn/ui MCP** to quickly find available components.
+
+**Example Tool Call:**
+```
+mcp_shadcn-ui-server_search_components(query="date picker")
+```
+This tool can also be used to list all components, or get details and examples for a specific one. Note that "Blocks" are not a standard `shadcn/ui` concept, but you can build complex components by composing the available primitives.
+
+### Researching Theming, Colors, and Charts
+For more detailed implementation guidance on topics like theming, colors, and advanced chart configuration, use **Context7**.
+
+**Example Tool Call:**
+```
+mcp_context7_get-library-docs(
+  context7CompatibleLibraryID="/shadcn-ui/ui",
+  topic="theming colors dark mode"
+)
+```
+
+## 2. Adding and Using New Components
+
+Once you've identified a component, add it to the project using the CLI.
+
+### Monorepo Setup
+
+This project uses a monorepo where `shadcn/ui` components are managed in the `@repo/ui` package, located at `packages/ui`.
+
+### Adding a Component
+
+1.  Navigate to the client app's directory:
+    ```bash
+    cd apps/client-app
+    ```
+
+2.  Run the `shadcn/ui` CLI `add` command. The CLI will automatically place the component files into the `packages/ui` directory.
+    ```bash
+    pnpm dlx shadcn@latest add [component-name]
+    ```
+    Replace `[component-name]` with the name from the MCP (e.g., `button`, `card`, `chart`).
+
+### Using a Component
+
+Import components from the `@repo/ui` package in your application's files.
+
+**Example: Using the Button component**
+
+```typescript
+import { Button } from "@repo/ui/components/button";
+
+function MyComponent() {
+  return <Button>Click me</Button>;
+}
+```
+
+## 3. Theming and Colors
+
+All colors and themes are managed through `shadcn/ui`'s theming system, which relies on CSS variables.
+
+- **Configuration:** The primary theme definition is in `packages/ui/src/styles/globals.css`.
+- **Guidance:** Use **Context7** as described in step 1 to find code snippets and documentation for creating or customizing themes and colors.

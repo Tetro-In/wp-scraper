@@ -1,0 +1,7 @@
+node_modules
+dist
+tokens
+session-data
+.env
+products.enriched.json
+
