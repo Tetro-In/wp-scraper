@@ -108,3 +108,24 @@ model SchedulerConfig {
 
   @@map("scheduler_config")
 }
+
+// Saved views for products table
+model SavedView {
+  id          String   @id @default(cuid())
+  name        String   @db.VarChar(100)
+  description String?  @db.Text
+
+  // View configuration stored as JSON
+  filters     Json     @default("{}")
+  columns     String[] @default([])
+  sortKey     String?  @db.VarChar(50) @map("sort_key")
+  sortDir     String?  @db.VarChar(10) @map("sort_dir")
+
+  // Metadata
+  isDefault   Boolean  @default(false) @map("is_default")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@index([isDefault])
+  @@map("saved_views")
+}

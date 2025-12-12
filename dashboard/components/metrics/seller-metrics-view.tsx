@@ -47,6 +47,7 @@ export function SellerMetricsView({ metrics }: SellerMetricsViewProps) {
       metric.city || '',
       metric.total_phones.toString(),
       metric.product_info_score.toString(),
+      metric.phones_last_week.toString(),
     ],
     10
   )
@@ -55,13 +56,13 @@ export function SellerMetricsView({ metrics }: SellerMetricsViewProps) {
   const invalidCount = metrics.filter((m) => !m.is_valid).length
 
   const getScoreBadgeVariant = (score: number) => {
-    if (score >= 4) return 'default'
-    if (score >= 2.5) return 'secondary'
+    if (score >= 4.8) return 'default'
+    if (score >= 3) return 'secondary'
     return 'destructive'
   }
 
   const getScoreLabel = (score: number) => {
-    return `${score.toFixed(1)}/5`
+    return `${score.toFixed(1)}/6`
   }
 
   const tableColumns = [
@@ -89,11 +90,18 @@ export function SellerMetricsView({ metrics }: SellerMetricsViewProps) {
       render: (metric: SellerMetric) => metric.city || '-',
     },
     {
-      key: 'phones_per_week',
-      header: 'Phones/Week',
+      key: 'phones_last_week',
+      header: 'Phones Last Week',
       sortable: true,
-      sortValue: (metric: SellerMetric) => metric.phones_per_week,
-      render: (metric: SellerMetric) => metric.phones_per_week.toFixed(1),
+      sortValue: (metric: SellerMetric) => metric.phones_last_week,
+      render: (metric: SellerMetric) => metric.phones_last_week,
+    },
+    {
+      key: 'active_avg_listings_week',
+      header: 'Active Avg/Week',
+      sortable: true,
+      sortValue: (metric: SellerMetric) => metric.active_avg_listings_week,
+      render: (metric: SellerMetric) => metric.active_avg_listings_week.toFixed(1),
     },
     {
       key: 'product_info_score',
@@ -205,8 +213,8 @@ export function SellerMetricsView({ metrics }: SellerMetricsViewProps) {
                       </div>
                     </div>
                     <div className="space-y-1">
-                      <span className="text-xs text-muted-foreground">Phones/Week</span>
-                      <p className="text-lg font-semibold">{metric.phones_per_week.toFixed(1)}</p>
+                      <span className="text-xs text-muted-foreground">Phones Last Week</span>
+                      <p className="text-lg font-semibold">{metric.phones_last_week}</p>
                     </div>
                     <div className="space-y-1">
                       <span className="text-xs text-muted-foreground">Active (3 days)</span>
@@ -220,7 +228,7 @@ export function SellerMetricsView({ metrics }: SellerMetricsViewProps) {
 
                   <div className="pt-2 flex items-center justify-between">
                     <span className="text-xs text-muted-foreground">
-                      Avg Listing/Week: {metric.avg_listings_week.toFixed(1)}
+                      Active Avg/Week: {metric.active_avg_listings_week.toFixed(1)}
                     </span>
                     {metric.catalogue_url && (
                       <a
